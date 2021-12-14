@@ -1,0 +1,59 @@
+---
+title: "final_BSDS"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+biker_df<-read_csv('comptagesvelo2015.csv')
+head(biker_df)
+str(biker_df)
+biker_df
+```
+
+
+```{r cars}
+linear_biker <- lm(Totem_Laurier~Berri1+Maisonneuve_2+Maisonneuve_3+University,biker_df)
+linear_biker
+summary(linear_biker)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+stotem_berri <- cor(biker_df$Totem_Laurier, biker_df$Berri1)
+totem_mais2 <- cor(biker_df$Totem_Laurier, biker_df$Maisonneuve_2)
+totem_mais3 <- cor(biker_df$Totem_Laurier, biker_df$Maisonneuve_3)
+totem_uni <- cor(biker_df$Totem_Laurier, biker_df$University)
+```
+
+```{r}
+linear_bike_two <- lm(Totem_Laurier~Berri1+Maisonneuve_2+University,biker_df)
+linear_bike_two
+summary(linear_bike_two)
+plot(linear_biker)
+plot(linear_bike_two)
+```
+
+
+
+```{r}
+#Totem_Laurier <- 222.81 + 0.58(Berri1) + 0.14(Maisonneuve_2) - 0.15(University)
+#ATTEMPING TO PREDICT
+berri1 <- 500
+Maisonneuve_2 <- 800
+University <- 500
+Totem_Laurier <- 222.81 + 0.58*berri1 + 0.14*Maisonneuve_2 - 0.15*University
+```
+
+
+
+```{r}
+berri1_2 <- 3319
+Maisonneuve_2_2 <- 3652
+University_2 <- 2704
+Totem_Laurier_2 <- 222.81 + 0.58*berri1_2 + 0.14*Maisonneuve_2_2 - 0.15*University_2
+
+```
